@@ -1,0 +1,40 @@
+<div style="text-align: center; margin: 5px; padding: 5px;">
+<div style="width:80%; height: 100%; 
+            margin: 0 auto; 
+            display: flex;
+            justify-content: center;
+            align-items: center;">
+    <mat-card style="width: 400px">
+        <mat-card-header *ngIf="employee">
+          <mat-card-title>{{employee.name}}</mat-card-title>
+          <mat-card-subtitle>{{employee._id}}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="profile" [ngStyle]="{'background-color': randomColor}" mat-card-image alt="Photo of a employee"></div>
+        <mat-card-content>
+            <table *ngIf="employee" style="text-align: left; padding: 1rem;">
+                <tr>
+                    <th>Id</th>
+                    <td>{{employee._id}}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{employee.name}}</td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td>{{employee.age}}</td>
+                </tr>
+                <tr>
+                    <th>Salary</th>
+                    <td>{{employee.salary}}</td>
+                </tr>
+            </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" routerLink="/employees">Back</button>
+        </mat-card-actions>
+    </mat-card>
+
+    
+</div>
+</div>

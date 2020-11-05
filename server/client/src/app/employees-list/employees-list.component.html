@@ -1,0 +1,30 @@
+<div style="text-align: center; margin: 5px; padding: 5px;">
+<div><h1>Employee List</h1></div>
+<div style="width:80%; height: 100%; margin: 0 auto;">
+    <div style="text-align: right; margin: 1rem;">
+        <button mat-raised-button style="background-color:#4caf50; color:white"  (click)="addEmployee()">Add +</button>
+    </div>
+    <table class="mat-elevation-z4" style="width: 100%;">
+        <thead>
+            <tr>
+               <th>Id</th> 
+               <th>Name</th> 
+               <th>Age</th> 
+               <th>Salary</th>
+               <th width=10%></th> 
+               <th width=10%></th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{employee._id}}</td>
+                <td>{{employee.name | titlecase }}</td>
+                <td>{{employee.age}}</td>
+                <td>{{employee.salary}}</td>
+                <td><button mat-raised-button  color="primary" [routerLink]="['/employees/',employee._id]">View</button></td>
+                <td><button mat-raised-button  color="accent" (click)="deleteEmployee(employee)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>

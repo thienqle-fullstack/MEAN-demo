@@ -1,0 +1,24 @@
+.v-center {
+    margin: 0 auto;
+}
+
+.profile {
+    width:432px;
+    height:400px;
+    /* background-color:whitesmoke; */
+    background-image: 
+    repeating-linear-gradient(
+        45deg,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.2) 50px,
+        transparent 0px,
+        transparent 100px
+    )
+    , repeating-linear-gradient(
+        -45deg,
+        rgba(0,0,0,0.1),
+        rgba(0,0,0,0.1) 50px,
+        transparent 0px,
+        transparent 100px
+    );
+}
