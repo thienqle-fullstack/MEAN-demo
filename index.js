@@ -8,7 +8,13 @@ var cors = require('cors')
 /* START - DATABASE */
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/employees',{ useFindAndModify: true })
+
+// const MONGODB_URL= "mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority"
+mongoose.connect(MONGODB_URL ||'mongodb://localhost/employees',{ 
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: true
+    })
     .then(()=>console.log('You are now connected to database!'))
     .catch((err) => console.log(err))
 
