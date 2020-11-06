@@ -155,7 +155,7 @@ app.get('/user',verifyToken,(req,res) => {
 })
 /* END - JWT */
 
-app.use(express.static(path.join(__dirname,"templates")))
+// app.use(express.static(path.join(__dirname,"templates")))
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT,() => `Server is listening on ${PORT}`);
