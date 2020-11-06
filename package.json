@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "install-client": "cd client && npm install",
-    "postinstall": "cd client && npm run install-client && ng build --aot --prod",
+    "postinstall": "npm run install-client && cd client  && ng build --aot --prod",
     "heroku-postbuild": "npm run install-client",
     "client": "cd client && npm start"
   },
