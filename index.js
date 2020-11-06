@@ -9,7 +9,7 @@ var cors = require('cors')
 const mongoose = require('mongoose');
 
 
-// const MONGODB_URL= "mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority"
+const MONGODB_URL= "mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority"
 mongoose.connect(MONGODB_URL ||'mongodb://localhost/employees',{ 
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -157,6 +157,10 @@ app.get('/user',verifyToken,(req,res) => {
 
 app.use(express.static(path.join(__dirname,"templates")))
 
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT || 8000;
 app.listen(PORT,() => `Server is listening on ${PORT}`);
+
+// STEP 3: FOR ANGULAR CLIENT 
+if(process.env.NODE_ENV == 'production'){
+    app.use(express.static('./client/dist/client'))
+}
