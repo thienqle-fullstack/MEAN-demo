@@ -92,7 +92,7 @@ app.put("/api/employees/:id",(req,res,next) => {
 /* START - JWT */
 
 //Temporary username and pass
-var userId = 1;
+var userId = 0;
 var username;
 var password;
 
