@@ -8,8 +8,8 @@ var cors = require('cors')
 /* START - DATABASE */
 const mongoose = require('mongoose');
 
-
-mongoose.connect('mongodb://localhost/employees',{ 
+const MONGODB_URL = "mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/<dbname>?retryWrites=true&w=majority"
+mongoose.connect(MONGODB_URL || 'mongodb://localhost/employees',{ 
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true
@@ -158,3 +158,8 @@ app.get('/user',verifyToken,(req,res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,() => `Server is listening on ${PORT}`);
+
+//Tell heroku to render my Angular build
+if(process.env.NODE_ENV == 'production'){
+    app.use(express.static('./client/dist/client'))
+}
