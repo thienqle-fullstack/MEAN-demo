@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const { json } = require('body-parser');
 
 
-
+//THis is Mongo Atlas
 mongoose.connect('mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority',{ 
 // mongoose.connect('mongodb://localhost/employees',{ 
         useNewUrlParser: true,
