@@ -10,15 +10,9 @@ const mongoose = require('mongoose');
 const { json } = require('body-parser');
 
 
-<<<<<<< HEAD
 
-const MONGO_URI = 'mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority'; 
-mongoose.connect(MONGO_URI || "mongodb://localhost/employees",{ 
-=======
-//THis is Mongo Atlas
-mongoose.connect('mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority',{ 
-// mongoose.connect('mongodb://localhost/employees',{ 
->>>>>>> a7f1635497a3427e7dcf0d1ebec5ebffbaabefea
+// const MONGO_URI = 'mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority'; 
+mongoose.connect(process.env.MONGODB_URL  || "mongodb://localhost/employees" ,{
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true
