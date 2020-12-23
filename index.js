@@ -10,7 +10,9 @@ const mongoose = require('mongoose');
 const { json } = require('body-parser');
 
 
-mongoose.connect('mongodb://localhost/employees',{ 
+
+mongoose.connect('mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority',{ 
+// mongoose.connect('mongodb://localhost/employees',{ 
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true
@@ -148,5 +150,10 @@ app.get('/user',verifyToken,(req,res) => {
 
 // app.use(express.static(path.join(__dirname,"templates")))
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 app.listen(PORT,() => `Server is listening on ${PORT}`);
+
+//STEP 3
+if(process.env.NODE_ENV == 'production') {
+    app.use(express.static('./client/dist/client'))
+}
