@@ -7,9 +7,10 @@ var cors = require('cors')
 
 /* START - DATABASE */
 const mongoose = require('mongoose');
+const { json } = require('body-parser');
 
-const MONGODB_URL = "mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/<dbname>?retryWrites=true&w=majority"
-mongoose.connect(MONGODB_URL || 'mongodb://localhost/employees',{ 
+
+mongoose.connect('mongodb://localhost/employees',{ 
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true
@@ -42,49 +43,40 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 /* READ ALL */
-app.get("/api/employees",(req,res,next) => {
-    Employee.find(function(err,data){
-        if (err) return next(err); // Pass errors to Express.
-        res.json(data)
-    })
+// async/await
+app.get("/api/employees",async (req,res,next) => {
+    data = await Employee.find()
+    res.json(data);
 })
 
 /* GET ONE */
-app.get("/api/employees/:id",(req,res,next) => {
+app.get("/api/employees/:id", async (req,res,next) => {
     let id = req.params.id;
-    Employee.findById(id,function(err,object){
-        if (err) return next(err); // Pass errors to Express.
-        res.json(object)
-    })
+    data = await Employee.findById(id)
+    res.json(data);
 })
 
 
 /* DELETE ONE */
-app.delete("/api/employees/:id",(req,res,next) => {
+app.delete("/api/employees/:id", async (req,res,next) => {
     let id = req.params.id;
-    Employee.findByIdAndRemove(id,function(err,object){
-        if (err) return next(err); // Pass errors to Express.
-        res.json(object)
-    })
+    data = await Employee.findByIdAndRemove(id)
+    res.json(data)
 })
 
 /* ADD ONE */
-app.post("/api/employees",(req,res,next) => {
+app.post("/api/employees", async(req,res,next) => {
     let new_object = req.body;
-    Employee.create(new_object, function(err,object){
-        if (err) return next(err); // Pass errors to Express.
-        res.json(object)
-    });
+    data = await Employee.create(new_object);
+    res.json(data)
 })
 
 /* UPDATE ONE */
-app.put("/api/employees/:id",(req,res,next) => {
+app.put("/api/employees/:id",async (req,res,next) => {
     let updated_object = req.body;
     let id = req.params.id;
-    Employee.findByIdAndUpdate(id,updated_object,{new: true},function(err,object){
-        if (err) return next(err); // Pass errors to Express.
-        res.json(object)
-    })
+    data = await Employee.findByIdAndUpdate(id,updated_object,{new: true})
+    res.json(data)
 })
 
 /* END - REST APIs */
@@ -92,7 +84,7 @@ app.put("/api/employees/:id",(req,res,next) => {
 /* START - JWT */
 
 //Temporary username and pass
-var userId = 0;
+var userId = 1;
 var username;
 var password;
 
@@ -158,8 +150,3 @@ app.get('/user',verifyToken,(req,res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT,() => `Server is listening on ${PORT}`);
-
-//Tell heroku to render my Angular build
-if(process.env.NODE_ENV == 'production'){
-    app.use(express.static('./client/dist/client'))
-}
