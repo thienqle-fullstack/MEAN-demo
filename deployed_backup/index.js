@@ -9,8 +9,7 @@ var cors = require('cors')
 const mongoose = require('mongoose');
 
 
-const MONGODB_URL= "mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority"
-mongoose.connect(MONGODB_URL ||'mongodb://localhost/employees',{ 
+mongoose.connect(process.env.MONGODB_URL ||'mongodb://localhost/employees',{ 
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true

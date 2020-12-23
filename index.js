@@ -11,8 +11,8 @@ const { json } = require('body-parser');
 
 
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority',{ 
-// mongoose.connect('mongodb://localhost/employees',{ 
+const MONGO_URI = 'mongodb+srv://admin:admin@cluster0.ye5kd.mongodb.net/employees?retryWrites=true&w=majority'; 
+mongoose.connect(MONGO_URI || "mongodb://localhost/employees",{ 
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: true
@@ -150,7 +150,7 @@ app.get('/user',verifyToken,(req,res) => {
 
 // app.use(express.static(path.join(__dirname,"templates")))
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT,() => `Server is listening on ${PORT}`);
 
 //STEP 3
