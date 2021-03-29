@@ -10,15 +10,22 @@ import { Observable } from 'rxjs';
 })
 export class EmployeesListComponent implements OnInit {
 
-  employees = []
+  employees:any = []
 
   constructor(private data: DataService) { }
 
   ngOnInit(): void {
-    this.data.getEmployees().subscribe(
-      (data) => { this.employees = data},
-      (err) => {console.log("There is an error")}
-    )
+    /* Use observable */
+    // this.data.getEmployees().subscribe(
+    //   (data) => { this.employees = data},
+    //   (err) => {console.log("There is an error")}
+    // )
+    
+    /* Use Promises */
+    this.data.getEmployees()
+        .then((res: any) => {
+          this.employees = res;
+      });
   }
 
   addEmployee() {

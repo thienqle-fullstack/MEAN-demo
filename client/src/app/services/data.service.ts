@@ -19,8 +19,14 @@ export class DataService {
 
   }
 
-  getEmployees():Observable<any>{
-    return this.http.get(this.url + "/api/employees");
+  /* Using observable */
+  // getEmployees():Observable<any>{
+  //   return this.http.get(this.url + "/api/employees");
+  // }
+
+  /* Using Promise */
+  getEmployees() {
+    return this.http.get(this.url + "/api/employees").toPromise();
   }
 
   addEmployees(employee):Observable<any>{
